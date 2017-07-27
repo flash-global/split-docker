@@ -10,6 +10,7 @@ RUN apt-get -qq update && \
     php7.0-cli php7.0-mysql php7.0-xml php7.0-soap \
     php7.0-mcrypt php7.0-json php7.0-curl php7.0-zip \
     pdftk a2ps htmldoc \
+    php7.0-mbstring \
     php-xdebug ssh \
     && rm -rf /var/lib/apt/lists/*
 
