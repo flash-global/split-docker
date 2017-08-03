@@ -19,6 +19,10 @@ COPY config/php.ini /etc/php/7.0/apache2/php.ini
 COPY config/mime.conf /etc/apache2/mods-available/mime.conf
 COPY config/xdebug.ini /etc/php/7.0/mods-available/xdebug.ini
 
+#Symlinks for PDF executable
+RUN ln -s /usr/bin/psjoin /usr/local/bin/psjoin \
+    && ln -s /usr/bin/gs /usr/local/bin/gs
+
 RUN a2enmod rewrite
 
 EXPOSE 80
