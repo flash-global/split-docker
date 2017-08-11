@@ -11,8 +11,15 @@ RUN apt-get -qq update && \
     php7.0-mcrypt php7.0-json php7.0-curl php7.0-zip \
     pdftk a2ps htmldoc mysql-client \
     php7.0-mbstring \
-    php-xdebug ssh \
+    php-xdebug ssh php-common \
     && rm -rf /var/lib/apt/lists/*
+
+# replace the php memcache with a fixed one
+COPY php-memcache/php-memcache_3.0.9-20151130.fdbd46b-2.flash1_amd64.deb /home/php-memcache_3.0.9-20151130.fdbd46b-2.flash1_amd64.deb
+RUN dpkg -i /home/php-memcache_3.0.9-20151130.fdbd46b-2.flash1_amd64.deb \
+    && echo php-memcache hold | dpkg --set-selections \
+    && rm /home/php-memcache_3.0.9-20151130.fdbd46b-2.flash1_amd64.deb
+# the last part is usefull if you decide to do some updates though you ain't supposed to do so
 
 COPY config/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY config/php.ini /etc/php/7.0/apache2/php.ini
