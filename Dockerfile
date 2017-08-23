@@ -25,6 +25,13 @@ RUN ln -s /usr/bin/psjoin /usr/local/bin/psjoin \
 
 RUN a2enmod rewrite
 
+RUN mkdir /NAS1 \
+    && mkdir /NAS1/OBJECTS  \
+    && mkdir /NAS1/OBJECTS/factures  \
+    && mkdir /NAS1/OBJECTS/factures/FLASH  \
+    && chmod -R 777 /NAS1
+
+
 EXPOSE 80
 
 ADD start.sh /start.sh
