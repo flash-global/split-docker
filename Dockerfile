@@ -27,6 +27,7 @@ RUN a2enmod rewrite
 
 RUN mkdir /NAS1 \
     && mkdir /NAS1/OBJECTS  \
+    && mkdir /NAS1/OBJECTS/fichiers  \
     && mkdir /NAS1/OBJECTS/factures  \
     && mkdir /NAS1/OBJECTS/factures/FLASH  \
     && chmod -R 777 /NAS1
