@@ -7,8 +7,6 @@ ENV APP_ENV dev
 
 RUN echo 'deb http://s3-eu-west-1.amazonaws.com/qafoo-profiler/packages debian main' > /etc/apt/sources.list.d/tideways.list
 
-RUN wget -qO - https://s3-eu-west-1.amazonaws.com/qafoo-profiler/packages/EEB5E8F4.gpg | apt-key add -
-
 RUN apt-get -qq update && \
     apt-get install -y apache2 php7.0 libapache2-mod-php  \
     php7.0-cli php7.0-mysql php7.0-xml php7.0-soap \
