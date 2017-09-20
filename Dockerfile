@@ -12,6 +12,7 @@ RUN apt-get -qq update && \
     pdftk a2ps htmldoc mysql-client \
     php7.0-mbstring \
     php-xdebug ssh php-common \
+    chromium-browser \
     && rm -rf /var/lib/apt/lists/*
 
 # replace the php memcache with a fixed one
