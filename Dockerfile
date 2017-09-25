@@ -15,7 +15,6 @@ RUN apt-get -qq update && \
     php7.0-mbstring \
     tideways-php \
     php-xdebug ssh php-common \
-    chromium-browser \
     && rm -rf /var/lib/apt/lists/*
 
 # replace the php memcache with a fixed one
