@@ -11,6 +11,7 @@ RUN apt-get -qq update && \
     php7.0-mcrypt php7.0-json php7.0-curl php7.0-zip php7.0-gd \
     pdftk a2ps htmldoc mysql-client \
     php7.0-mbstring \
+    php7.0-intl \
     php-xdebug ssh php-common \
     && rm -rf /var/lib/apt/lists/*
 
