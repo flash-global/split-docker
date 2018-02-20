@@ -24,6 +24,7 @@ RUN dpkg -i /home/php-memcache_3.0.9-20151130.fdbd46b-2.flash1_amd64.deb \
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
     apt-get update && \
     apt-get install -y nodejs && \
+    apt-get install git && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
