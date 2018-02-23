@@ -37,4 +37,5 @@ EXPOSE 80
 
 ADD start.sh /start.sh
 RUN chmod 0755 /start.sh
+WORKDIR /var/www
 CMD ["bash", "start.sh"]
