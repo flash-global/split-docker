@@ -14,13 +14,6 @@ RUN apt-get -qq update && \
     php7.0-intl \
     php-xdebug ssh php-common \
     && rm -rf /var/lib/apt/lists/*
-    
-RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
-    && PHP_INI_DIR=$(php -i | grep "additional .ini") \
-    && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version \
-    && tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp \
-    && mv /tmp/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so \
-    && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8707\n" > $PHP_INI_DIR/conf.d/blackfire.ini
 
 # replace the php memcache with a fixed one
 COPY php-memcache/php-memcache_3.0.9-20151130.fdbd46b-2.flash1_amd64.deb /home/php-memcache_3.0.9-20151130.fdbd46b-2.flash1_amd64.deb
