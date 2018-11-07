@@ -9,7 +9,7 @@ RUN apt-get -qq update && \
     apt-get install -y --allow-unauthenticated apache2 php7.0 libapache2-mod-php imagemagick curl\
     php7.0-cli php7.0-mysql php7.0-xml php7.0-soap \
     php7.0-mcrypt php7.0-json php7.0-curl php7.0-zip php7.0-gd \
-    pdftk a2ps htmldoc mysql-client \
+    pdftk wkhtmltopdf xvfb a2ps htmldoc mysql-client \
     php7.0-mbstring \
     php7.0-intl \
     php-xdebug ssh php-common \
