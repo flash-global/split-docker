@@ -12,6 +12,7 @@ RUN apt-get -qq update && \
     pdftk a2ps htmldoc mysql-client \
     php7.0-mbstring \
     php7.0-intl \
+    php7.0-ldap \
     php-xdebug ssh php-common \
     && rm -rf /var/lib/apt/lists/*
 
