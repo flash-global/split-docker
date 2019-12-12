@@ -1,36 +1,35 @@
-FROM ubuntu:16.04
-
-MAINTAINER Jerome Schaeffer <jsc@opcoding.eu>
+FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV APP_ENV dev
 
 RUN apt-get -qq update && \
-    apt-get install -y --allow-unauthenticated apache2 php7.0 libapache2-mod-php imagemagick curl\
-    php7.0-cli php7.0-mysql php7.0-xml php7.0-soap \
-    php7.0-mcrypt php7.0-json php7.0-curl php7.0-zip php7.0-gd \
-    pdftk a2ps htmldoc mysql-client \
-    php7.0-mbstring \
-    php7.0-intl \
-    php7.0-ldap \
-    php-xdebug ssh php-common \
+    apt-get install -y --allow-unauthenticated \
+    curl \
+    ssh \
+    php7.2 \
+    php7.2-cli \
+    php7.2-mysql \
+    php7.2-xml \
+    php7.2-soap \
+    php7.2-json \
+    php7.2-curl \
+    php7.2-zip \
+    php7.2-gd \
+    php7.2-mbstring \
+    php7.2-intl \
+    php7.2-ldap \
+    php-xdebug \
+    php-common \
+    php-memcached \
+    composer \
+    apache2 \
+    libapache2-mod-php \
+    mysql-client \
     && rm -rf /var/lib/apt/lists/*
 
-# replace the php memcache with a fixed one
-COPY php-memcache/php-memcache_3.0.9-20151130.fdbd46b-2.flash1_amd64.deb /home/php-memcache_3.0.9-20151130.fdbd46b-2.flash1_amd64.deb
-RUN dpkg -i /home/php-memcache_3.0.9-20151130.fdbd46b-2.flash1_amd64.deb \
-    && echo php-memcache hold | dpkg --set-selections \
-    && rm /home/php-memcache_3.0.9-20151130.fdbd46b-2.flash1_amd64.deb
-# the last part is usefull if you decide to do some updates though you ain't supposed to do so
-
 COPY config/000-default.conf /etc/apache2/sites-available/000-default.conf
-COPY config/php.ini /etc/php/7.0/apache2/php.ini
 COPY config/mime.conf /etc/apache2/mods-available/mime.conf
-COPY config/xdebug.ini /etc/php/7.0/mods-available/xdebug.ini
-
-#Symlinks for PDF executable
-RUN ln -s /usr/bin/psjoin /usr/local/bin/psjoin \
-    && ln -s /usr/bin/gs /usr/local/bin/gs
+COPY config/xdebug.ini /etc/php/7.2/mods-available/xdebug.ini
 
 RUN a2enmod rewrite
 
