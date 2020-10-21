@@ -29,6 +29,7 @@ RUN apt-get -qq update && \
 
 COPY config/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY config/mime.conf /etc/apache2/mods-available/mime.conf
+COPY config/envvars /etc/apache2/envvars
 COPY config/xdebug.ini /etc/php/7.4/mods-available/xdebug.ini
 
 RUN a2enmod rewrite
