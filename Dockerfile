@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -6,18 +6,18 @@ RUN apt-get -qq update && \
     apt-get install -y --allow-unauthenticated \
     curl \
     ssh \
-    php7.2 \
-    php7.2-cli \
-    php7.2-mysql \
-    php7.2-xml \
-    php7.2-soap \
-    php7.2-json \
-    php7.2-curl \
-    php7.2-zip \
-    php7.2-gd \
-    php7.2-mbstring \
-    php7.2-intl \
-    php7.2-ldap \
+    php7.4 \
+    php7.4-cli \
+    php7.4-mysql \
+    php7.4-xml \
+    php7.4-soap \
+    php7.4-json \
+    php7.4-curl \
+    php7.4-zip \
+    php7.4-gd \
+    php7.4-mbstring \
+    php7.4-intl \
+    php7.4-ldap \
     php-xdebug \
     php-common \
     php-memcached \
@@ -29,7 +29,7 @@ RUN apt-get -qq update && \
 
 COPY config/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY config/mime.conf /etc/apache2/mods-available/mime.conf
-COPY config/xdebug.ini /etc/php/7.2/mods-available/xdebug.ini
+COPY config/xdebug.ini /etc/php/7.4/mods-available/xdebug.ini
 
 RUN a2enmod rewrite
 
