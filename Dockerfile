@@ -28,6 +28,7 @@ RUN apt-get -qq update && \
     && rm -rf /var/lib/apt/lists/*
 
 COPY config/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY config/php.ini /etc/php/7.0/apache2/php.ini
 COPY config/mime.conf /etc/apache2/mods-available/mime.conf
 COPY config/envvars /etc/apache2/envvars
 COPY config/xdebug.ini /etc/php/7.4/mods-available/xdebug.ini
