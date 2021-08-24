@@ -24,11 +24,13 @@ RUN apt-get -qq update && \
     php-xdebug \
     php-common \
     php-memcached \
-    composer \
     apache2 \
     libapache2-mod-php \
     mysql-client \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 COPY config/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY config/php.ini /etc/php/8.0/apache2/php.ini
