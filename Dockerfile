@@ -32,6 +32,9 @@ COPY config/xdebug.ini /etc/php/7.0/mods-available/xdebug.ini
 RUN ln -s /usr/bin/psjoin /usr/local/bin/psjoin \
     && ln -s /usr/bin/gs /usr/local/bin/gs
 
+# For aws SDK signing usage
+RUN curl -LJO https://rolesanywhere.amazonaws.com/releases/1.0.3/X86_64/Linux/aws_signing_helper && chmod +x ./aws_signing_helper && cp ./aws_signing_helper /bin/
+
 RUN a2enmod rewrite
 
 EXPOSE 80
