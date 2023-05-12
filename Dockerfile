@@ -1,7 +1,5 @@
 FROM ubuntu:16.04
 
-MAINTAINER Jerome Schaeffer <jsc@opcoding.eu>
-
 ENV DEBIAN_FRONTEND noninteractive
 ENV APP_ENV dev
 
@@ -13,14 +11,11 @@ RUN apt-get -qq update && \
     php7.0-mbstring \
     php7.0-intl \
     php7.0-ldap \
+    php-memcache \
+    php-memcached \
     php-xdebug ssh php-common \
     && rm -rf /var/lib/apt/lists/*
 
-# replace the php memcache with a fixed one
-COPY php-memcache/php-memcache_3.0.9-20151130.fdbd46b-2.flash1_amd64.deb /home/php-memcache_3.0.9-20151130.fdbd46b-2.flash1_amd64.deb
-RUN dpkg -i /home/php-memcache_3.0.9-20151130.fdbd46b-2.flash1_amd64.deb \
-    && echo php-memcache hold | dpkg --set-selections \
-    && rm /home/php-memcache_3.0.9-20151130.fdbd46b-2.flash1_amd64.deb
 # the last part is usefull if you decide to do some updates though you ain't supposed to do so
 
 COPY config/000-default.conf /etc/apache2/sites-available/000-default.conf
